@@ -1,10 +1,10 @@
 from csv import writer, reader
-from os import path
-
-way_to_csv_file = path.abspath(path.join(path.dirname(__file__), './resources/eggs.csv'))
+from os import path as p
 
 
-def test_create_csv_file():
+def test_create_csv_file(way_to_dir):
+    way_to_csv_file = p.join(way_to_dir, './resources/eggs.csv')
+
     row_1 = ['Anna', 'Pavel', 'Peter']
     row_2 = ['Alex', 'Serj', 'Yana']
 
@@ -13,7 +13,7 @@ def test_create_csv_file():
         csvwriter.writerow(row_1)
         csvwriter.writerow(row_2)
 
-    assert path.exists(way_to_csv_file)
+    assert p.exists(way_to_csv_file)
 
     with open(way_to_csv_file, 'r') as csvfile:
         csvreader = reader(csvfile)
