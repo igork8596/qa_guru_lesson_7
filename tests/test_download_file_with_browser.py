@@ -2,9 +2,10 @@ import os
 from selenium import webdriver
 from selene import browser as b
 from os import path as p
+import time
 
 
-def test_download_file_from_browser(way_to_dir, tmp_management):
+def test_download_file_with_browser(way_to_dir, tmp_management):
     way_for_uploaded_file = p.join(way_to_dir, 'tmp')
 
     options = webdriver.ChromeOptions()
@@ -20,8 +21,9 @@ def test_download_file_from_browser(way_to_dir, tmp_management):
     b.element(".d-none .Button-label").click()
     b.element('[data-open-app="link"]').click()
 
-    while True:
-        if 'pytest-main.zip' in os.listdir(way_for_uploaded_file):
+    timeout = round(time.time()) + 10
+    while time.time() <= timeout:
+        if p.exists(p.join(way_for_uploaded_file,'pytest-main.zip')):
             break
         else:
             continue
