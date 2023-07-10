@@ -34,5 +34,3 @@ def tmp_management():
     files_list = os.listdir(way_to_tmp)
     for i in range(len(files_list)):
         os.remove(p.join(way_to_tmp, files_list[i]))
-
-
