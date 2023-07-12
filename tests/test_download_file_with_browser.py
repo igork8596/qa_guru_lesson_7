@@ -29,4 +29,4 @@ def test_download_file_with_browser(way_to_dir, tmp_management):
             continue
 
     assert p.exists(p.join(way_for_uploaded_file, 'pytest-main.zip'))
-    assert p.getsize(way_for_uploaded_file) == 4096
+    assert p.getsize(p.join(way_for_uploaded_file, 'pytest-main.zip')) == 1582717
